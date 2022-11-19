@@ -1,0 +1,12 @@
+{
+	"title"		:	"My Addon",
+	"type"		:	"weapon",
+	"tags"		:	[ "fun" ],
+	"ignore"	:
+	[
+		".git",
+		"*.psd",
+		"*.vcproj",
+		"*.svn*"
+	]
+}

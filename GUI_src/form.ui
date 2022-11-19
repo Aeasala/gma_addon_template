@@ -6,25 +6,382 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1133</width>
+    <height>847</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Garry's Mod GMA Toolkit</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>380</y>
+      <width>381</width>
+      <height>171</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QPushButton" name="workshop_update_existing_button">
+       <property name="text">
+        <string>Update Existing GMA on Steam Workshop</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="gma_publish_button">
+       <property name="text">
+        <string>Publish GMA to Steam Workshop</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="gma_generate_button">
+       <property name="text">
+        <string>Generate GMA!</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QPushButton" name="create_symlink_button">
+       <property name="text">
+        <string>Create a Symlink to your Addon</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLineEdit" name="addon_path_line_edit">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>150</y>
+      <width>251</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>./your_addon_here</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="addon_path_label">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>150</y>
+      <width>171</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+    <property name="text">
+     <string>Addon Path</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="symlink_path_label">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>230</y>
+      <width>171</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+    <property name="text">
+     <string>Symlink gens found in</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="symlink_path_line_edit">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>230</y>
+      <width>251</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>./symlinks</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="gma_path_label">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>190</y>
+      <width>171</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+    <property name="text">
+     <string>Selected GMA</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="gma_path_line_edit">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>190</y>
+      <width>251</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>./your_addon_here</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="workshop_icon">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>30</y>
+      <width>220</width>
+      <height>220</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+    <property name="midLineWidth">
+     <number>0</number>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../icon/icon.jpg</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="margin">
+     <number>5</number>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="tools_group_box">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>300</y>
+      <width>341</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial Black</family>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="title">
+     <string>Tools</string>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="select_icon_button">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>260</y>
+      <width>121</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Select an Icon</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="debugging_group_box">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>570</y>
+      <width>341</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial Black</family>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="title">
+     <string>Debugging Output</string>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>610</y>
+      <width>256</width>
+      <height>192</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <row>
+     <property name="text">
+      <string>Addon Path</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>GMA</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Icon Path</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Symlink Path</string>
+     </property>
+    </row>
+   </widget>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>1133</width>
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionFile_addon_root_folder"/>
+    <addaction name="actionFile_gma_select"/>
+    <addaction name="separator"/>
+    <addaction name="actionFile_icon_select"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionHelp_symlinks"/>
+    <addaction name="actionHelp_updating"/>
+   </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>Tools</string>
+    </property>
+    <addaction name="actionTools_show_debug"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuTools"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionTools_show_debug">
+   <property name="text">
+    <string>Show Debug Console</string>
+   </property>
+  </action>
+  <action name="actionFile_addon_root_folder">
+   <property name="text">
+    <string>Select a Different Addon Root Folder</string>
+   </property>
+  </action>
+  <action name="actionFile_gma_select">
+   <property name="text">
+    <string>Select a Different GMA to Publish</string>
+   </property>
+  </action>
+  <action name="actionFile_icon_select">
+   <property name="text">
+    <string>Select a Different Icon</string>
+   </property>
+  </action>
+  <action name="actionHelp_symlinks">
+   <property name="text">
+    <string>Symlinks?  Huh?  Why?</string>
+   </property>
+  </action>
+  <action name="actionHelp_updating">
+   <property name="text">
+    <string>How do I update my published addon?</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
