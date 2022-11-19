@@ -1,0 +1,1 @@
+.\workshop\gmpublish.exe update -icon ".\icon\tsar_launcher.jpg" -id "2889552312"

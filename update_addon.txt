@@ -1,0 +1,1 @@
+.\workshop\gmpublish.exe update -addon ".\output\tsar_launcher.gma" -id "2889552312" -changes "Should now work with GB5 installed (or not installed).  Removed unused entity" 
