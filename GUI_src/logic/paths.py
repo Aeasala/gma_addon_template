@@ -11,127 +11,144 @@ type_file = 'file'
 binfolder = 'bin'
 
 class paths():
-    
-
-    
-    
-    
+        
     rel_wd = "GUI_src/logic/"
     
     _wd = None
-    _levels_below_bin = 2
+    _levels_below_bin = 2 + 0
     
-    def __init__(self):
-                    
+    
+    def __init__(self, levels_below_bin = 2, dbg = False):
+        self.dbg = dbg
+        self._levels_below_bin = levels_below_bin
         self._wd = os.getcwd()
         
-        self.GMAD_PATH = os.path.join('bin', 'gmad.exe')
-        self.GMPUBLISH_PATH = os.path.join('bin', 'gmpublish.exe')
-        self.STEAM_API_DLL_PATH = os.path.join('bin', 'steam_api.dll')
+        self.get_full_path = self.__get_full_path(self)
+        self.get_rel_path = self.__get_rel_path(self)
         
-
-
+        if self.dbg:
+            print("╔══════════════════════════════════════════╗\n"
+                  "║ :: Looking for binaries and libraries :: ║\n"
+                  "╠══════════════════════════════════════════╣\n")
+        self.validate()
+        if self.dbg:
+            print("\n"
+                  "╚══════════════════════════════════════════╝")
+        
+    def validate(self):
+        self.validate_bin()
+        print()
+        self.gmad_path = self.get_full_path.gmad()
+        self.gmpublish_path = self.get_full_path.gmpublish()
+        self.steam_api_path = self.get_full_path.steam_api()
+    
     def validate_bin(self):
         os.chdir(self._wd)
         to_find = 'bin'
 
-        self.get_wd()
-        for i in range(self._levels_below_bin):
-            print(i)
-            
-            os.chdir('../')
-            self.get_wd()
-            
-        print(os.getcwd() + self.GMAD_PATH)
-        if os.path.exists(
-                os.path.join(os.getcwd() + to_find)):
-            
-            self.found(to_find, type_folder)
-        else:
-            self.no_find(to_find, type_folder)
-        os.chdir(self._wd)
-
-
-    def found(self, name, item_type):
-        print("Found", item_type, name)
-
-    def no_found(self, name, item_type):
-        print("Could not find", item_type, "'" + name + "'" + ".  Check your installation.")
+        hit = self._find(to_find, type_folder, is_folder = 'bin')
         
-    def refresh_paths(self):
-        pass
+        
+        
+        return hit
     
     def get_wd(self):
         print(os.getcwd())
+        return os.getcwd()
+    
+    def reset_wd(self):
+        os.chdir(self._wd)
         
-    def _find(self, to_find, find_type, relative = False):
+        
+    def _find(self, to_find, find_type, relative = False, inside_folder = None, is_folder = None):
+        
         os.chdir(self._wd)
         up_dir = '..' + os.sep
         
         rel_path_str = ''
-        
         for directory_step in range(self._levels_below_bin):              
             os.chdir(up_dir)
             rel_path_str = os.path.join('..', rel_path_str)
             continue
-        print(os.path.join(rel_path_str, to_find))
-        print(os.getcwd())
         
-        print(os.path.exists(os.path.join(rel_path_str, binfolder, to_find)))
-        hit_try = os.path.join(os.getcwd(), binfolder, to_find)
+        if inside_folder is not None and is_folder is not None:
+            print("inside_folder and is_folder args cannot both be set.\n"
+                  "clearing is_folder, looking inside_folder = 'bin'")
+            is_folder = None
+            inside_folder = 'bin'
+        elif inside_folder is None and is_folder is None:
+            inside_folder = 'bin'
+            
+        
+        if inside_folder is not None:
+            hit_try = os.path.join(os.getcwd(), inside_folder, to_find)
+        else:
+            hit_try = os.path.join(os.getcwd(), to_find)
+            
         if os.path.exists(hit_try):
-            self.found(to_find, type_file)
-            if relative:
-                hit = ''
 
-                pass
+            if relative:
+                hit = os.path.join(rel_path_str, binfolder, to_find)
             else:
                 hit = hit_try
+                
+            if self.dbg:
+                print(" > Found", find_type, "'" + to_find + "'")
         else:
-            self.no_found(to_find, type_file)
+            if self.dbg:
+                print(" > Could not find", find_type, "'" + to_find + "'" + ".  Check your installation.")
             hit = None
         
         os.chdir(self._wd)
         return hit
         
-    class get_full_path():
-        
-        def gmad():
+    class __get_full_path():
+
+        def __init__(self, object):
+            self.wrapper = object
+            
+        def gmad(self):
             to_find = 'gmad.exe'
             find_type = type_file
             
-            hit = self._find(to_find, find_type)
+            hit = self.wrapper._find(to_find, find_type, inside_folder = binfolder)
             
             return hit
 
-        def gmpublish():
+        def gmpublish(self):
             to_find = 'gmpublish.exe'
             find_type = type_file
             
-            hit = self._find(to_find, find_type)
+            hit = self.wrapper._find(to_find, find_type, inside_folder = binfolder)
             
             return hit
 
-        def steam_api():
+        def steam_api(self):
             to_find = 'steam_api.dll'
             find_type = type_file
             
-            hit = self._find(to_find, find_type)
+            hit = self.wrapper._find(to_find, find_type, inside_folder = binfolder)
             
             return hit
             pass
         
-    def get_rel_path():
-        def gmad():
+    class __get_rel_path(): #unimplemented
+        def __init__(self, object):
+            self.wrapper = object    
+            
+        def gmad(self):
+            to_find = 'gmad.exe'
+            find_type = type_file
+            
+            hit = self.wrapper._find(to_find, find_type, inside_folder = binfolder, relative = True)
+            
+            return hit
             pass
-        def gmpublish():
+        def gmpublish(self):
             pass
-        def steam_api():
+        def steam_api(self):
             pass
 
 # for IDE debugging
 if __name__ == "__main__":
     self = paths()
-    self.get_full_path.gmad()
-    self.get_full_path.gmpublish()
-    self.get_full_path.steam_api()
